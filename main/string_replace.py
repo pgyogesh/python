@@ -8,16 +8,12 @@ import os
 
 # Define sleep
 def sleep():
-    time.sleep(.4)
+    time.sleep(.8)
     
-# Infinite Loop
-try:
-  while True:
-    sys.stdout.write('\r'+ 'yogesh')
-    sleep()
+thought = 'the discomfort you feel is a sure sign that you are growing as a person... :)'
+for word in thought.split():
+    word = word + ' ' * 111
+    sys.stdout.write('\r' + word)
     sys.stdout.flush()
-    sys.stdout.write('\r'+ 'jadhav')
-    sleep()
-    sys.stdout.flush()
-except KeyboardInterrupt: # To exit on keyboard interrupt
-  print('\n Exiting...')
+    sleep()   
+print('\n')
