@@ -12,7 +12,7 @@ def sleep():
     
 thought = 'the discomfort you feel is a sure sign that you are growing as a person... :)'
 for word in thought.split():
-    word = word + ' ' * 111
+    word = word + ' ' * 11
     sys.stdout.write('\r' + word)
     sys.stdout.flush()
     sleep()   
