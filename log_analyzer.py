@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.6
 import re
 import optparse
 import datetime
@@ -20,7 +20,8 @@ def get_errors():
             for match in re.finditer(error_regex,line,re.S):
                 counter = counter + 1
         if counter != 0:
-            print(h,':',counter * '*',counter)
+            print("%s:%s:%s" %(h,counter * '*',counter))
+            #print(h,':',counter * '*',counter)
         counter = 0
         file.close()
 
@@ -33,7 +34,8 @@ def get_warnings():
             for match in re.finditer(error_regex,line,re.S):
                 counter = counter + 1
         if counter != 0:
-            print(h,':',counter * '*',counter)
+            print("%s:%s:%s" %(h,counter * '*',counter))
+            #print(h,':',counter * '*',counter)
         counter = 0
         file.close()
 
@@ -46,7 +48,8 @@ def get_notices():
             for match in re.finditer(error_regex,line,re.S):
                 counter = counter + 1
         if counter != 0:
-            print(h,':',counter * '*',counter)
+            print("%s:%s:%s" %(h,counter * '*',counter))
+            #print(h,':',counter * '*',counter)
         counter = 0
         file.close()
 
@@ -59,7 +62,22 @@ def get_criticals():
             for match in re.finditer(error_regex,line,re.S):
                 counter = counter + 1
         if counter != 0:
-            print(h,':',counter * '*',counter)
+            print("%s:%s:%s" %(h,counter * '*',counter))
+            #print(h,':',counter * '*',counter)
+        counter = 0
+        file.close()
+
+def get_custom():
+    counter = 0
+    custom_regex = input("Please enter string/regex to search in log\n=")
+    for h in hour:
+        file = open(vLogFile,"r")
+        for line in file:
+            for match in re.finditer(custom_regex,line,re.S):
+                counter = counter + 1
+        if counter != 0:
+            print("%s:%s:%s" %(h,counter * '*',counter))
+            #print(h,':',counter * '*',counter)
         counter = 0
         file.close()
 
@@ -92,7 +110,7 @@ def trim_log():
                 oFile.write(line)
     print("%s Created" %output_file)
 if __name__ == '__main__':
-    print("1. Error\n2. Warning\n3. Notice\n4. Critical")
+    print("1. Error\n2. Warning\n3. Notice\n4. Critical\n5. Custom")
     vChoice = int(input("Please choose your option from above options (Ex. Choose 2 for Warnings)\n="))
     if vChoice == 1:
         get_errors()
@@ -102,10 +120,12 @@ if __name__ == '__main__':
         get_notices()
     elif vChoice == 4:
         get_criticals()
+    elif vChoice == 5:
+        get_custom()
     else:
         print("Wrong input.. Exiting...!")
-    trim_choice = input("Do you want to trim error log:Y|N[Default=N]\n=")
-    if trim_choice == 'Y':
+    trim_choice = input("Do you want to trim error log:Yy|Nn[Default=N]\n=")
+    if trim_choice == 'Y' or trim_choice == 'y':
         trim_log()
     else:
         print("Exiting on user request")
