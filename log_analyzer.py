@@ -14,7 +14,7 @@ hour = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','1
 def get_errors():
     counter = 0
     for h in hour:
-        error_regex= '^^\d\d\d\d-\d\d-\d\d %s:\d\d:\d\d.\d\d\d Error:' %h
+        error_regex= '^\d\d\d\d-\d\d-\d\d %s:\d\d:\d\d.\d\d\d Error:' %h
         file = open(vLogFile,"r")
         for line in file:
             for match in re.finditer(error_regex,line,re.S):
