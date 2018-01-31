@@ -27,8 +27,9 @@ def get_graph(log_type):
 
 def get_custom():
     counter = 0
-    custom_regex = raw_input("Please enter string/regex to search in log\n=")
+    custom_input = raw_input("Please enter string/regex to search in log=")
     for h in hour:
+        custom_regex = '^\d\d\d\d-\d\d-\d\d %s:\d\d:\d\d.\d\d\d .*? %s' %(h,custom_input)
         file = open(vLogFile,"r")
         for line in file:
             for match in re.finditer(custom_regex,line,re.S):
